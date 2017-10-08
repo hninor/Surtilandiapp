@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">Surtilandiapp</string>
+    <!--<string-array name="options_array">-->
+        <!--<item>Mi Tienda</item>-->
+        <!--<item>Mis Productos</item>-->
+        <!--<item>Mis Competidores</item>-->
+        <!--<item>Perfil</item>-->
+        <!--<item>Ayuda</item>-->
+    <!--</string-array>-->
+    <string-array name="navigation_drawer_items_array">
+        <item>Mi Tienda</item>
+        <item>Mis Productos</item>
+        <item>Mis Competidores</item>
+        <item>Perfil</item>
+        <item>Ayuda</item>
+    </string-array>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="action_websearch">Web search</string>
+    <string name="app_not_available">Sorry, there\'s no web browser available</string>
+    <string name="forget_password">Solo necesitamos el email con el que hiciste el registro para enviarte las instrucciones de recuperación de contraseña</string>
+    <string name="regresar">&#60;&#60; Regresar</string>
 </resources>

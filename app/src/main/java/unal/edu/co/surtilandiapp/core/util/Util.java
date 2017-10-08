@@ -8,6 +8,8 @@ import android.net.wifi.WifiManager;
 import android.os.Environment;
 import android.telephony.TelephonyManager;
 import android.text.format.Formatter;
+import android.view.View;
+import android.view.ViewGroup;
 
 import java.io.File;
 import java.text.DateFormat;
@@ -115,4 +117,11 @@ public class Util {
         return fecha;
     }
 
+    public static void sendViewToBack(final View child) {
+        final ViewGroup parent = (ViewGroup)child.getParent();
+        if (null != parent) {
+            parent.removeView(child);
+            parent.addView(child, 0);
+        }
+    }
 }

@@ -3,7 +3,17 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="colorTextLogin">#c566c9</color>
+    <color name="colorTextForget">#c566c9</color>
+    <color name="colorWhite">#fff</color>
+    <color name="colorBackgroundButton">#c600df</color>
+    <color name="colorPlaceholder">#FF4081</color>
+    <color name="colorSelect">#6C9399</color>
+    <color name="colorBackgroundMenu">#4c0056</color>
 
+
+    <!-- To Fix Bug -->
+    <item name="visible" type="id"/>
+    <item name="masked" type="id"/>
 </resources>
+
 
