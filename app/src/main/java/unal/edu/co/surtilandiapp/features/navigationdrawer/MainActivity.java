@@ -1,5 +1,6 @@
 package unal.edu.co.surtilandiapp.features.navigationdrawer;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
@@ -12,10 +13,18 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+
 import unal.edu.co.surtilandiapp.R;
 import unal.edu.co.surtilandiapp.features.navigationdrawer.DataModel;
+import unal.edu.co.surtilandiapp.features.store.SearchStore;
 
 public class MainActivity extends AppCompatActivity {
+
 
     private String[] mNavigationDrawerItemTitles;
     private DrawerLayout mDrawerLayout;
@@ -24,9 +33,12 @@ public class MainActivity extends AppCompatActivity {
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
     android.support.v7.app.ActionBarDrawerToggle mDrawerToggle;
+    SupportMapFragment sMapFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mTitle = mDrawerTitle = getTitle();
@@ -55,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         setupDrawerToggle();
 
+//        sMapFragment.getMapAsync(this);
     }
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
@@ -69,16 +82,21 @@ public class MainActivity extends AppCompatActivity {
     private void selectItem(int position) {
 
         Fragment fragment = null;
-
+//        android.support.v4.app.Fragment mFragment = null;
+//        android.support.v4.app.FragmentManager sFm = getSupportFragmentManager();
         switch (position) {
             case 0:
-                fragment = new ConnectFragment();
+                //Load Map
+//                Intent intent = new Intent(MainActivity.this, SearchStore.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                startActivity(intent);
+                fragment = new SearchStoreFragment();
                 break;
             case 1:
                 fragment = new FixturesFragment();
                 break;
             case 2:
-                fragment = new TableFragment();
+                fragment = new ConnectFragment();
                 break;
             case 3:
                 fragment = new TableFragment();
@@ -137,4 +155,5 @@ public class MainActivity extends AppCompatActivity {
         //This is necessary to change the icon of the Drawer Toggle upon state change.
         mDrawerToggle.syncState();
     }
+
 }
