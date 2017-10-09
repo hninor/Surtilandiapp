@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_image"
+    android:orientation="vertical"
+    android:scrollbarAlwaysDrawVerticalTrack="true">
+
+    <MultiAutoCompleteTextView
+        android:id="@+id/comentario_comentario_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/comentario_agregar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="29dp"
+        android:text="Comentario 1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+
+    <TextView
+        android:id="@+id/comentarios_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center_horizontal"
+        android:text="Comentarios"
+        android:textColor="@color/colorWhite"
+        android:textSize="26sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/comentarios_add"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/comentarios_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:singleLine="false"
+        android:text="Comentar..." />
+
+    <Button
+        android:id="@+id/comentario_agregar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agregar"
+        android:layout_below="@+id/comentarios_add"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp" />
+
+    <MultiAutoCompleteTextView
+        android:id="@+id/comentario_comentario_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/comentario_comentario_1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="36dp"
+        android:text="Comentario 2"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+
+
+</RelativeLayout>

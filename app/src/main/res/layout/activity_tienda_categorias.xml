@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_image"
+    android:orientation="vertical"
+    android:scrollbarAlwaysDrawVerticalTrack="true">
+
+    <TextView
+        android:id="@+id/comentarios_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center_horizontal"
+        android:text="Categorias"
+        android:textColor="@color/colorWhite"
+        android:textSize="26sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tienda_nombre"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Tienda Don Panchito"
+        android:textColor="@color/colorWhite"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_below="@+id/comentarios_title"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/categoria_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/categoria_4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
+        android:text="Arroz" />
+
+    <Button
+        android:id="@+id/categoria_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/categoria_1"
+        android:layout_centerHorizontal="true"
+        android:text="Jabon" />
+
+    <Button
+        android:id="@+id/categoria_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/categoria_2"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="19dp"
+        android:layout_marginRight="19dp"
+        android:text="Chocolate" />
+
+    <Button
+        android:id="@+id/categoria_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/categoria_1"
+        android:layout_alignStart="@+id/categoria_1"
+        android:layout_centerVertical="true"
+        android:text="Cafe" />
+
+    <Button
+        android:id="@+id/categoria_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/categoria_4"
+        android:layout_alignLeft="@+id/categoria_2"
+        android:layout_alignStart="@+id/categoria_2"
+        android:text="Cepillos" />
+
+    <Button
+        android:id="@+id/categoria_6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/categoria_5"
+        android:layout_alignLeft="@+id/categoria_3"
+        android:layout_alignStart="@+id/categoria_3"
+        android:text="Frutas" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/categoria_2"
+        android:layout_alignEnd="@+id/categoria_1"
+        android:layout_alignRight="@+id/categoria_1"
+        android:layout_marginBottom="28dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@color/colorPrimaryDark"
+        app:srcCompat="@android:drawable/ic_search_category_default" />
+
+    <EditText
+        android:id="@+id/categoria_buscar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_toEndOf="@+id/imageView"
+        android:layout_toRightOf="@+id/imageView"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Buscar..." />
+
+
+</RelativeLayout>
