@@ -9,6 +9,7 @@
     <color name="colorPlaceholder">#FF4081</color>
     <color name="colorSelect">#6C9399</color>
     <color name="colorBackgroundMenu">#4c0056</color>
+    <color name="white">#FFFFFF</color>
 
 
     <!-- To Fix Bug -->
