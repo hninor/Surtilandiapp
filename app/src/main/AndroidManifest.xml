@@ -56,7 +56,7 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBkucXr30oAWGKe1o3ierZ_ELWHJhP4PJ0" />
+            android:value="AIzaSyDn7BduE2vGI2IutH-sDK_KeieQeX-eW_4" />
 
         <activity
             android:name=".features.shopkeeper.add.AddProductActivity"

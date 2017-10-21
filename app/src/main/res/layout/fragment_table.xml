@@ -1,33 +1,116 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <Button
+        android:id="@+id/perfil_btn_guardar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/perfil_btn_cancelar"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="52dp"
+        android:layout_marginRight="60dp"
+        android:theme="@style/MyButton"
+        android:text="Guardar" />
 
-    <TextView
-        android:id="@+id/label"
+    <Button
+        android:id="@+id/perfil_btn_cancelar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginStart="40dp"
+        android:text="Cancelar" android:theme="@style/MyButton"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="100dp"
-        android:layout_width="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="66dp" />
+
+
+   <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:textSize="45dp"
-        android:text="Table"
-        android:textStyle="bold"/>
+        android:id="@+id/textInputLayout"
+       android:layout_below="@+id/imageView2"
+       android:layout_marginTop="51dp">
 
-    <TextView
-        android:layout_below="@id/label"
-        android:layout_centerInParent="true"
-        android:layout_width="fill_parent"
+       <EditText
+           android:id="@+id/perfil_nombre"
+           style="@android:style/Widget.DeviceDefault.EditText"
+           android:layout_width="204dp"
+           android:layout_height="wrap_content"
+           android:hint="Nombre"
+           android:inputType="text" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="12dp"
-        android:layout_marginTop="10dp"
-        android:gravity="center_horizontal"
-        android:text="Edit fragment_table.xml to change the appearance"
-        android:id="@+id/textView2" />
+        android:id="@+id/textInputLayout_celular"
+        android:layout_marginTop="26dp"
+        android:layout_below="@+id/textInputLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <EditText
+            android:id="@+id/perfil_celular"
+            style="@android:style/Widget.DeviceDefault.EditText"
+            android:layout_width="204dp"
+            android:layout_height="wrap_content"
+            android:hint="Celular"
+            android:inputType="text|number|phone" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textInputLayout_email"
+        android:layout_marginTop="26dp"
+        android:layout_below="@+id/textInputLayout_celular"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <EditText
+            android:id="@+id/perfil_email"
+            style="@android:style/Widget.DeviceDefault.EditText"
+            android:layout_width="204dp"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:inputType="textEmailAddress" />
+    </android.support.design.widget.TextInputLayout>
 
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        app:srcCompat="@drawable/ic_man"
+        android:layout_below="@+id/perfil_btn_cancelar"
+        android:layout_toRightOf="@+id/perfil_btn_cancelar"
+        android:layout_toEndOf="@+id/perfil_btn_cancelar" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_edit"
+        android:layout_alignTop="@+id/imageButton2"
+        android:layout_alignLeft="@+id/perfil_btn_cancelar"
+        android:layout_alignStart="@+id/perfil_btn_cancelar" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/perfil_btn_guardar"
+        android:layout_alignRight="@+id/perfil_btn_guardar"
+        android:layout_alignTop="@+id/imageView2"
+        android:layout_marginTop="13dp"
+        app:srcCompat="@android:drawable/ic_menu_delete" />
 
 
 </RelativeLayout>
