@@ -1,4 +1,4 @@
-package unal.edu.co.surtilandiapp.features.navigationdrawer;
+package unal.edu.co.surtilandiapp.features.shopkeeper.navigationdrawer;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,10 +14,10 @@ import unal.edu.co.surtilandiapp.R;
  * Created by f on 8/10/2017.
  */
 
-public class TableFragment extends Fragment implements View.OnClickListener {
+public class ProfileFragment extends Fragment implements View.OnClickListener {
     View rootView;
     Button cancelButton;
-    public TableFragment() {
+    public ProfileFragment() {
     }
 
     @Override

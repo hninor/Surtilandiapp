@@ -1,4 +1,4 @@
-package unal.edu.co.surtilandiapp.features.navigationdrawer;
+package unal.edu.co.surtilandiapp.features.shopkeeper.navigationdrawer;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -17,15 +16,13 @@ import butterknife.ButterKnife;
 import unal.edu.co.surtilandiapp.R;
 import unal.edu.co.surtilandiapp.features.shopkeeper.competitor.CompetitorAdapter;
 import unal.edu.co.surtilandiapp.features.shopkeeper.competitor.Store;
-import unal.edu.co.surtilandiapp.features.shopkeeper.products.Nugget;
-import unal.edu.co.surtilandiapp.features.shopkeeper.products.ProductsRVAdapter;
 
-public class ConnectFragment extends Fragment {
+public class CompetitorFragment extends Fragment {
 
     @BindView(R.id.vertical_courses_list)
     RecyclerView coursesRecyclerView;
     private CompetitorAdapter adapter;
-    public ConnectFragment() {
+    public CompetitorFragment() {
     }
 
     @Override

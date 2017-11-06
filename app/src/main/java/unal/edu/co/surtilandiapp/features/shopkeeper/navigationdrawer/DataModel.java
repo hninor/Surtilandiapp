@@ -1,4 +1,4 @@
-package unal.edu.co.surtilandiapp.features.navigationdrawer;
+package unal.edu.co.surtilandiapp.features.shopkeeper.navigationdrawer;
 
 /**
  * Created by f on 8/10/2017.

@@ -1,4 +1,4 @@
-package unal.edu.co.surtilandiapp.features.navigationdrawer;
+package unal.edu.co.surtilandiapp.features.shopkeeper.navigationdrawer;
 
 import android.app.Activity;
 import android.content.Context;

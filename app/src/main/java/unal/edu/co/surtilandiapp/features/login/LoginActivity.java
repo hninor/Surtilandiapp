@@ -7,7 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import unal.edu.co.surtilandiapp.R;
-import unal.edu.co.surtilandiapp.features.navigationdrawer.MainActivity;
+import unal.edu.co.surtilandiapp.features.client.mainmenu.MenuClientActivity;
+import unal.edu.co.surtilandiapp.features.shopkeeper.navigationdrawer.MenuShopKeeperActivity;
 import unal.edu.co.surtilandiapp.features.register.ForgetActivity;
 import unal.edu.co.surtilandiapp.features.register.RegisterActivity;
 
@@ -51,7 +52,8 @@ public class LoginActivity extends AppCompatActivity {
 
     public void redirectMain(View view)
     {
-        Intent intent = new Intent(this, MainActivity.class);
+        //Intent intent = new Intent(this, MenuShopKeeperActivity.class);
+        Intent intent = new Intent(this, MenuClientActivity.class);
         startActivity(intent);
     }
 }

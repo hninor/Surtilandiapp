@@ -1,6 +1,5 @@
-package unal.edu.co.surtilandiapp.features.navigationdrawer;
+package unal.edu.co.surtilandiapp.features.shopkeeper.navigationdrawer;
 
-import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
@@ -14,16 +13,11 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 
 import unal.edu.co.surtilandiapp.R;
-import unal.edu.co.surtilandiapp.features.navigationdrawer.DataModel;
-import unal.edu.co.surtilandiapp.features.store.SearchStore;
 
-public class MainActivity extends AppCompatActivity {
+public class MenuShopKeeperActivity extends AppCompatActivity {
 
 
     private String[] mNavigationDrawerItemTitles;
@@ -87,19 +81,19 @@ public class MainActivity extends AppCompatActivity {
         switch (position) {
             case 0:
                 //Load Map
-//                Intent intent = new Intent(MainActivity.this, SearchStore.class);
+//                Intent intent = new Intent(MenuShopKeeperActivity.this, SearchStore.class);
 //                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //                startActivity(intent);
                 fragment = new SearchStoreFragment();
                 break;
             case 1:
-                fragment = new FixturesFragment();
+                fragment = new ProductsFragment();
                 break;
             case 2:
-                fragment = new ConnectFragment();
+                fragment = new CompetitorFragment();
                 break;
             case 3:
-                fragment = new TableFragment();
+                fragment = new ProfileFragment();
                 break;
             case 4:
                 finish();
@@ -118,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
             mDrawerLayout.closeDrawer(mDrawerList);
 
         } else {
-            Log.e("MainActivity", "Error in creating fragment");
+            Log.e("MenuShopKeeperActivity", "Error in creating fragment");
         }
     }
 

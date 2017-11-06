@@ -1,4 +1,4 @@
-package unal.edu.co.surtilandiapp.features.navigationdrawer;
+package unal.edu.co.surtilandiapp.features.shopkeeper.navigationdrawer;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,7 +26,7 @@ import unal.edu.co.surtilandiapp.features.shopkeeper.products.ProductsRVAdapter;
  * Created by f on 8/10/2017.
  */
 
-public class FixturesFragment extends Fragment {
+public class ProductsFragment extends Fragment {
 
     @BindView(R.id.vertical_courses_list)
     RecyclerView coursesRecyclerView;
@@ -36,7 +36,7 @@ public class FixturesFragment extends Fragment {
     private ProductsRVAdapter adapter;
 
 
-    public FixturesFragment() {
+    public ProductsFragment() {
     }
 
     @Override
