@@ -43,7 +43,7 @@ public class SearchStoreFragment extends Fragment {
             e.printStackTrace();
         }
 
-        googleMap = mMapView.getMap();
+        //googleMap = mMapView.getMap();
         // latitude and longitude
         double latitude = 4.6449882;
         double longitude = -74.1356206;
