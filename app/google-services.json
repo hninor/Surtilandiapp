@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "299443916924",
+    "firebase_url": "https://surtilandiapp-90738.firebaseio.com",
+    "project_id": "surtilandiapp-90738",
+    "storage_bucket": "surtilandiapp-90738.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:299443916924:android:4ae0de430b6cfd35",
+        "android_client_info": {
+          "package_name": "unal.edu.co.surtilandiapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "299443916924-f834viemgn2asm3fl67p0s92o2jr6jbr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "unal.edu.co.surtilandiapp",
+            "certificate_hash": "c3b777455cd7fbfa7baafd922348d44ab8562945"
+          }
+        },
+        {
+          "client_id": "299443916924-stkj646ktokol4d21h0bjjvgvoagr65k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKBAnw-Sr8lz8xaMedkSjjOenOTYHQyLA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "299443916924-stkj646ktokol4d21h0bjjvgvoagr65k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
