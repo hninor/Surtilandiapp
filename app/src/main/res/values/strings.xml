@@ -28,5 +28,7 @@
     <string name="disponible">Disponible</string>
     <string name="informacion">Información</string>
     <string name="title_activity_menu_tendero">Tendero</string>
-    <string name="title_activity_menu_cliente">Cliente</string>>
+    <string name="title_activity_menu_cliente">Cliente</string>
+    <string name="requerido">Requerido</string>
+    <string name="contrasena_no_coinciden">Las contraseñas no coinciden</string>>
 </resources>

@@ -26,7 +26,7 @@ import unal.edu.co.surtilandiapp.features.login.LoginActivity;
  * Created by f on 8/10/2017.
  */
 
-public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
+public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     @BindView(R.id.btnRegister)
@@ -35,10 +35,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     EditText etEmail;
     @BindView(R.id.etPassword)
     EditText etPassword;
+    @BindView(R.id.etConfirmPassword)
+    EditText etConfirmPassword;
 
     private static final String TAG = "RegisterFirebase";
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -78,8 +81,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     //Call when press "Regresar"
-    public void redirectBack(View v)
-    {
+    public void redirectBack(View v) {
         finish();
     }
 
@@ -110,7 +112,24 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnRegister:
-                registerUser(etEmail.getText().toString().trim(), etPassword.getText().toString().trim());
+                String email = etEmail.getText().toString().trim();
+                String password = etPassword.getText().toString().trim();
+                String confirmPassword = etConfirmPassword.getText().toString().trim();
+                if (email.isEmpty()) {
+                    etEmail.requestFocus();
+                    etEmail.setError(getString(R.string.requerido));
+                } else if (password.isEmpty()) {
+                    etPassword.requestFocus();
+                    etPassword.setError(getString(R.string.requerido));
+                } else if (!password.equals(confirmPassword)) {
+                    etPassword.setText("");
+                    etConfirmPassword.setText("");
+                    etPassword.requestFocus();
+                    etPassword.setError(getString(R.string.contrasena_no_coinciden));
+                } else {
+                    registerUser(email, password);
+                }
+
                 break;
         }
     }
