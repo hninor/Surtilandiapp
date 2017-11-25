@@ -16,6 +16,7 @@ import android.widget.ListView;
 import com.google.android.gms.maps.SupportMapFragment;
 
 import unal.edu.co.surtilandiapp.R;
+import unal.edu.co.surtilandiapp.features.store.CreateStoreFragment;
 
 public class MenuShopKeeperActivity extends AppCompatActivity {
 
@@ -84,7 +85,7 @@ public class MenuShopKeeperActivity extends AppCompatActivity {
 //                Intent intent = new Intent(MenuShopKeeperActivity.this, SearchStoreActivity.class);
 //                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //                startActivity(intent);
-                fragment = new SearchStoreFragment();
+                fragment = new CreateStoreFragment();
                 break;
             case 1:
                 fragment = new ProductsFragment();

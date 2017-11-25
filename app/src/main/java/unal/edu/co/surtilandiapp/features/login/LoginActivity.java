@@ -16,10 +16,17 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import unal.edu.co.surtilandiapp.R;
+import unal.edu.co.surtilandiapp.core.data.business.ProductBussines;
+import unal.edu.co.surtilandiapp.features.client.mainmenu.MenuClientActivity;
 import unal.edu.co.surtilandiapp.features.register.ForgetActivity;
 import unal.edu.co.surtilandiapp.features.register.RegisterActivity;
 import unal.edu.co.surtilandiapp.features.shopkeeper.navigationdrawer.MenuShopKeeperActivity;
@@ -105,9 +112,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         startActivity(intent);
     }
 
-    public void redirectMain() {
-        //Intent intent = new Intent(this, MenuShopKeeperActivity.class);
-        Intent intent = new Intent(this, MenuShopKeeperActivity.class);
+    public void redirectMain(String rol) {
+        Intent intent;
+        if (rol.equals("Tendero")) {
+            intent = new Intent(this, MenuShopKeeperActivity.class);
+        } else {
+            intent = new Intent(this, MenuClientActivity.class);
+        }
+
         startActivity(intent);
     }
 
@@ -135,8 +147,24 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void updateUI(FirebaseUser user) {
+        String email = user.getEmail().split("@")[0];
+        DatabaseReference userQuery = FirebaseDatabase.getInstance().getReference(ProductBussines.USERS_REFERENCE);
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String rol = dataSnapshot.getValue(String.class);
+                redirectMain(rol);
+            }
 
-        redirectMain();
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+                // ...
+            }
+        };
+        userQuery.child(email).child("rol").addListenerForSingleValueEvent(postListener);
+
     }
 
     @Override

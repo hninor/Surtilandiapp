@@ -4,119 +4,133 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="unal.edu.co.surtilandiapp.features.store.CreateStoreActivity"
-    tools:showIn="@layout/activity_create_store">
+    android:padding="16dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:theme="@style/TextLabel">
 
             <EditText
                 android:id="@+id/etNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableTint="@color/colorPlaceholder"
-                android:maxLines="1"
                 android:hint="@string/nombre"
-                android:inputType="text" />
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/white" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:theme="@style/TextLabel">
 
             <EditText
                 android:id="@+id/etDescripcion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableTint="@color/colorPlaceholder"
-                android:maxLines="1"
                 android:hint="@string/descripcion"
-                android:inputType="text" />
+
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/white" />
         </android.support.design.widget.TextInputLayout>
 
-        <TextView
-            android:textStyle="bold"
-            android:layout_marginTop="5dp"
-            android:text="@string/horarioApertura"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TimePicker
-            android:id="@+id/tpHorarioApertura"
-            android:timePickerMode="spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </TimePicker>
-
-        <TextView
-            android:textStyle="bold"
-            android:layout_marginTop="5dp"
-            android:text="@string/horarioCierre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TimePicker
-            android:id="@+id/tpHorarioCierre"
-            android:timePickerMode="spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </TimePicker>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:theme="@style/TextLabel">
+
+            <EditText
+                android:id="@+id/etHorarioApertura"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableTint="@color/colorPlaceholder"
+                android:hint="@string/horarioApertura"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:theme="@style/TextLabel" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/TextLabel">
+
+            <EditText
+                android:id="@+id/etHorarioCierre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableTint="@color/colorPlaceholder"
+                android:hint="@string/horarioCierre"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:theme="@style/TextLabel" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/TextLabel">
 
             <EditText
                 android:id="@+id/etTelefono"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableTint="@color/colorPlaceholder"
-                android:maxLines="1"
                 android:hint="@string/telefono"
-                android:inputType="text" />
+                android:inputType="number"
+                android:maxLines="1"
+                android:textColor="@color/white" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:theme="@style/TextLabel">
 
             <EditText
                 android:id="@+id/etEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableTint="@color/colorPlaceholder"
-                android:maxLines="1"
                 android:hint="@string/email"
-                android:inputType="text" />
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:textColor="@color/white" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:theme="@style/TextLabel">
 
             <EditText
                 android:id="@+id/etDireccion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableTint="@color/colorPlaceholder"
-                android:maxLines="1"
                 android:hint="@string/direccion"
-                android:inputType="text" />
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/white" />
         </android.support.design.widget.TextInputLayout>
 
 
-
     </LinearLayout>
-
 
 
 </ScrollView>

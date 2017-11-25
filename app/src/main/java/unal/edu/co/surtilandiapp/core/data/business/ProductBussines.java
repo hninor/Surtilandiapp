@@ -8,4 +8,5 @@ public class ProductBussines {
 
     public static final String CATEGORIES_REFERENCE = "categories";
     public static final String PRODUCTS_STORE_REFERENCE = "products_store";
+    public static final String USERS_REFERENCE = "users";
 }

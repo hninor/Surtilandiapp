@@ -81,6 +81,12 @@
                     android:inputType="textPassword" />
             </android.support.design.widget.TextInputLayout>
 
+            <Switch
+                android:text="@string/tendero"
+                android:id="@+id/switchTendero"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
         </LinearLayout>
 
 

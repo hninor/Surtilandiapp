@@ -1,14 +1,13 @@
 package unal.edu.co.surtilandiapp.features.register;
 
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -16,11 +15,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import unal.edu.co.surtilandiapp.R;
-import unal.edu.co.surtilandiapp.features.login.LoginActivity;
+import unal.edu.co.surtilandiapp.core.data.business.ProductBussines;
 
 /**
  * Created by f on 8/10/2017.
@@ -37,6 +38,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     EditText etPassword;
     @BindView(R.id.etConfirmPassword)
     EditText etConfirmPassword;
+    @BindView(R.id.switchTendero)
+    Switch switchTendero;
 
     private static final String TAG = "RegisterFirebase";
     private FirebaseAuth mAuth;
@@ -94,7 +97,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            //updateUI(user);
+                            updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
@@ -106,6 +109,19 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         // ...
                     }
                 });
+    }
+
+    private void updateUI(FirebaseUser user) {
+        String rol = "Cliente";
+        String email = user.getEmail().split("@")[0];
+        DatabaseReference userQuery = FirebaseDatabase.getInstance().getReference(ProductBussines.USERS_REFERENCE);
+        if (switchTendero.isChecked()) {
+            rol = "Tendero";
+        }
+        userQuery.child(email).child("rol").setValue(rol);
+        Toast.makeText(RegisterActivity.this, R.string.registro_exitoso,
+                Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
