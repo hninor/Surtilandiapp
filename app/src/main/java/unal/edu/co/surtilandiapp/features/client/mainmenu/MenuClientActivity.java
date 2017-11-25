@@ -85,7 +85,7 @@ public class MenuClientActivity extends AppCompatActivity {
         switch (position) {
             case 0:
                 //Load Map
-//                Intent intent = new Intent(MenuShopKeeperActivity.this, SearchStore.class);
+//                Intent intent = new Intent(MenuShopKeeperActivity.this, SearchStoreActivity.class);
 //                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //                startActivity(intent);
                 fragment = new SearchStoreFragment();

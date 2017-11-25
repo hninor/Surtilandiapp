@@ -30,5 +30,14 @@
     <string name="title_activity_menu_tendero">Tendero</string>
     <string name="title_activity_menu_cliente">Cliente</string>
     <string name="requerido">Requerido</string>
-    <string name="contrasena_no_coinciden">Las contraseñas no coinciden</string>>
+    <string name="contrasena_no_coinciden">Las contraseñas no coinciden</string>
+    <string name="title_activity_create_store">Crear Tienda</string>
+    <string name="nombre">Nombre</string>
+    <string name="telefono">Teléfono</string>
+    <string name="email">Email</string>
+    <string name="direccion">Dirección</string>
+    <string name="correo_electronico">Correo Electrónico</string>
+    <string name="contraseña">Contraseña</string>
+    <string name="horarioApertura">Horario Apertura</string>
+    <string name="horarioCierre">Horario Cierre</string>>
 </resources>
