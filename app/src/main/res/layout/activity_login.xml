@@ -47,6 +47,7 @@
                     android:drawableTint="@color/colorPlaceholder"
                     android:hint="Correo Electrónico"
                     android:inputType="textEmailAddress"
+                    android:text="hninor@gmail.com"
                     android:maxLines="1" />
             </android.support.design.widget.TextInputLayout>
 
@@ -60,6 +61,7 @@
                     android:layout_height="wrap_content"
                     android:drawableTint="@color/colorPlaceholder"
                     android:hint="Contraseña"
+                    android:text="123456"
                     android:inputType="textPassword"
                     android:maxLines="1" />
             </android.support.design.widget.TextInputLayout>

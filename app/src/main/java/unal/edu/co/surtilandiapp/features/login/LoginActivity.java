@@ -1,10 +1,10 @@
 package unal.edu.co.surtilandiapp.features.login;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,10 +20,9 @@ import com.google.firebase.auth.FirebaseUser;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import unal.edu.co.surtilandiapp.R;
-import unal.edu.co.surtilandiapp.features.client.mainmenu.MenuClientActivity;
-import unal.edu.co.surtilandiapp.features.shopkeeper.navigationdrawer.MenuShopKeeperActivity;
 import unal.edu.co.surtilandiapp.features.register.ForgetActivity;
 import unal.edu.co.surtilandiapp.features.register.RegisterActivity;
+import unal.edu.co.surtilandiapp.features.shopkeeper.navigationdrawer.MenuShopKeeperActivity;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -108,7 +107,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     public void redirectMain() {
         //Intent intent = new Intent(this, MenuShopKeeperActivity.class);
-        Intent intent = new Intent(this, MenuClientActivity.class);
+        Intent intent = new Intent(this, MenuShopKeeperActivity.class);
         startActivity(intent);
     }
 
