@@ -20,7 +20,7 @@ import unal.edu.co.surtilandiapp.R;
 public class ProductsRVAdapter extends RecyclerView.Adapter<ProductsRVAdapter.SimpleViewHolder> {
 
     private final Context mContext;
-    private static List<Nugget> mData;
+    private static List<CategoryProduct> mData;
     private static RecyclerView horizontalList;
 
     public static class SimpleViewHolder extends RecyclerView.ViewHolder {
@@ -38,7 +38,7 @@ public class ProductsRVAdapter extends RecyclerView.Adapter<ProductsRVAdapter.Si
         }
     }
 
-    public ProductsRVAdapter(Context context, List<Nugget> data) {
+    public ProductsRVAdapter(Context context, List<CategoryProduct> data) {
         mContext = context;
         if (data != null)
             mData = new ArrayList<>(data);

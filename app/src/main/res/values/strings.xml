@@ -44,5 +44,7 @@
     <string name="registro_exitoso">Registro exitoso</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nombre_requerido">Nombre requerido</string>
+    <string name="tienda_guardada">Tienda guardada</string>>
 </resources>

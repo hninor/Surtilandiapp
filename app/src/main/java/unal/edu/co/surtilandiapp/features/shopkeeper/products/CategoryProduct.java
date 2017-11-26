@@ -2,14 +2,16 @@ package unal.edu.co.surtilandiapp.features.shopkeeper.products;
 
 import java.util.List;
 
+import unal.edu.co.surtilandiapp.core.data.entities.ProductStore;
+
 /**
  * Created by USER on 16/10/2017.
  */
 
-public class Nugget {
+public class CategoryProduct {
 
     private String title;
-    private List<String> tags;
+    private List<ProductStore> tags;
 
 
     public String getTitle() {
@@ -20,11 +22,11 @@ public class Nugget {
         this.title = title;
     }
 
-    public List<String> getTags() {
+    public List<ProductStore> getTags() {
         return tags;
     }
 
-    public void setTags(List<String> tags) {
+    public void setTags(List<ProductStore> tags) {
         this.tags = tags;
     }
 }

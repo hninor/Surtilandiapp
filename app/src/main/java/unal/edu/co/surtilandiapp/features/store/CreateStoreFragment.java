@@ -2,6 +2,8 @@ package unal.edu.co.surtilandiapp.features.store;
 
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,11 +11,17 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TimePicker;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import unal.edu.co.surtilandiapp.R;
+import unal.edu.co.surtilandiapp.core.data.business.ProductBussines;
+import unal.edu.co.surtilandiapp.core.data.entities.Location;
+import unal.edu.co.surtilandiapp.core.data.entities.Store;
 
 
 public class CreateStoreFragment extends Fragment {
@@ -30,6 +38,16 @@ public class CreateStoreFragment extends Fragment {
     EditText etHorarioApertura;
     @BindView(R.id.etHorarioCierre)
     EditText etHorarioCierre;
+    @BindView(R.id.etNombre)
+    EditText etNombre;
+    @BindView(R.id.etDescripcion)
+    EditText etDescripcion;
+    @BindView(R.id.etTelefono)
+    EditText etTelefono;
+    @BindView(R.id.etEmail)
+    EditText etEmail;
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
 
     public CreateStoreFragment() {
         // Required empty public constructor
@@ -68,7 +86,6 @@ public class CreateStoreFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_create_store, container, false);
         ButterKnife.bind(this, view);
-
         etHorarioApertura.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -110,7 +127,39 @@ public class CreateStoreFragment extends Fragment {
 
             }
         });
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String name = etNombre.getText().toString().trim();
+                String description = etDescripcion.getText().toString().trim();
+                String open = etHorarioApertura.getText().toString().trim();
+                String close = etHorarioCierre.getText().toString().trim();
+                String phone = etTelefono.getText().toString().trim();
+                String email = etEmail.getText().toString().trim();
+                Location location = new Location();
+                location.setLat(3.434);
+                location.setLng(45.434);
+                if (name.isEmpty()) {
+                    etNombre.requestFocus();
+                    mostrarMensaje(getString(R.string.nombre_requerido));
+                } else {
+                    Store store = new Store(name, description, open, close, phone, email, location);
+                    DatabaseReference storeQuery = FirebaseDatabase.getInstance().getReference(ProductBussines.STORES_REFERENCE);
+                    storeQuery.child(name).setValue(store);
+                    mostrarMensaje(getString(R.string.tienda_guardada));
+
+                }
+
+            }
+        });
         return view;
+    }
+
+    public void mostrarMensaje(String mensaje) {
+        Snackbar.make(etDescripcion, mensaje, Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
     }
 
 

@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import unal.edu.co.surtilandiapp.R;
+import unal.edu.co.surtilandiapp.core.data.entities.ProductStore;
 
 /**
  * Created by USER on 16/10/2017.
@@ -17,13 +18,13 @@ import unal.edu.co.surtilandiapp.R;
 
 public class HorizontalRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<String> mDataList;
+    private List<ProductStore> mDataList;
     private int mRowIndex = -1;
 
     public HorizontalRVAdapter() {
     }
 
-    public void setData(List<String> data) {
+    public void setData(List<ProductStore> data) {
         if (mDataList != data) {
             mDataList = data;
             notifyDataSetChanged();
@@ -55,7 +56,7 @@ public class HorizontalRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder rawHolder, int position) {
         ItemViewHolder holder = (ItemViewHolder) rawHolder;
-        holder.text.setText(mDataList.get(position));
+        holder.text.setText(mDataList.get(position).getPrecio());
         holder.itemView.setTag(position);
     }
 
