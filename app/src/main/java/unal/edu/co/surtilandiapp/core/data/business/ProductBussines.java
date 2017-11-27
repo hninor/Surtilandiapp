@@ -10,4 +10,5 @@ public class ProductBussines {
     public static final String PRODUCTS_STORE_REFERENCE = "products_store";
     public static final String USERS_REFERENCE = "users";
     public static final String STORES_REFERENCE = "stores";
+    public static final String USER_PERFIL = "user_perfil";
 }
