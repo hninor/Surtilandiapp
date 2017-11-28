@@ -20,7 +20,7 @@ import unal.edu.co.surtilandiapp.features.shopkeeper.navigationdrawer.DataModel;
 import unal.edu.co.surtilandiapp.features.shopkeeper.navigationdrawer.DrawerItemCustomAdapter;
 import unal.edu.co.surtilandiapp.features.shopkeeper.navigationdrawer.ProductsFragment;
 import unal.edu.co.surtilandiapp.features.shopkeeper.navigationdrawer.ProfileFragment;
-import unal.edu.co.surtilandiapp.features.shopkeeper.navigationdrawer.SearchStoreFragment;
+import unal.edu.co.surtilandiapp.features.client.search.SearchStoreFragment;
 
 public class MenuClientActivity extends AppCompatActivity {
 

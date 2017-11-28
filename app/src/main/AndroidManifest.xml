@@ -43,10 +43,10 @@
             android:label="@string/app_name" />
         <activity
             android:name=".features.shopkeeper.navigationdrawer.MenuShopKeeperActivity"
-            android:label="@string/title_activity_menu_tendero"></activity>
+            android:label="@string/title_activity_menu_tendero" />
         <activity
             android:name=".features.client.mainmenu.MenuClientActivity"
-            android:label="@string/title_activity_menu_cliente"></activity>
+            android:label="@string/title_activity_menu_cliente" />
         <activity
             android:name=".features.store.SearchStoreActivity"
             android:label="@string/app_name" />
@@ -62,6 +62,13 @@
             android:name=".features.shopkeeper.add.AddProductActivity"
             android:label="@string/title_activity_add_product"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".features.store.MenuStoreActivity"
+            android:label="@string/tienda" />
+        <activity
+            android:name=".features.client.products.ComparePriceActivity"
+            android:label="@string/title_activity_compare_price"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
