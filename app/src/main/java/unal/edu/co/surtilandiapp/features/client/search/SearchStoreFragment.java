@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,9 +20,21 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import unal.edu.co.surtilandiapp.R;
+import unal.edu.co.surtilandiapp.core.data.business.ProductBussines;
+import unal.edu.co.surtilandiapp.core.data.entities.Store;
 import unal.edu.co.surtilandiapp.features.store.MenuStoreActivity;
+
+import static android.content.ContentValues.TAG;
 
 
 /**
@@ -31,6 +44,8 @@ import unal.edu.co.surtilandiapp.features.store.MenuStoreActivity;
 public class SearchStoreFragment extends Fragment implements GoogleMap.OnMarkerClickListener {
     MapView mMapView;
     private GoogleMap googleMap;
+    private ValueEventListener mValueEventListener;
+    private List<Store> mListStores;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,18 +83,53 @@ public class SearchStoreFragment extends Fragment implements GoogleMap.OnMarkerC
                 }
                 googleMap.setMyLocationEnabled(true);
 
-                // For dropping a marker at a point on the Map
-                LatLng sydney = new LatLng(-34, 151);
-                googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker Title").snippet("Marker Description"));
+                consultarTiendasCercanas();
 
-                // For zooming automatically to the location of the marker
-                CameraPosition cameraPosition = new CameraPosition.Builder().target(sydney).zoom(12).build();
-                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
             }
         });
 
         // Perform any camera updates here
         return v;
+    }
+
+    private void consultarTiendasCercanas() {
+        mListStores = new ArrayList<>();
+        DatabaseReference userQuery = FirebaseDatabase.getInstance().getReference(ProductBussines.STORES_REFERENCE);
+        mValueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    Store store = postSnapshot.getValue(Store.class);
+                    mListStores.add(store);
+                }
+                procesar();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+                // ...
+            }
+        };
+        userQuery.addValueEventListener(mValueEventListener);
+    }
+
+    private void procesar() {
+        LatLng sydney = new LatLng(4.63858, -74.0841);
+        for (Store store : mListStores) {
+            // For dropping a marker at a point on the Map
+            sydney = new LatLng(store.getLocation().getLat(), store.getLocation().getLng());
+            googleMap.addMarker(new MarkerOptions().position(sydney).title(store.getName()).snippet(store.getDescription()));
+
+
+        }
+        // For zooming automatically to the location of the marker
+        CameraPosition cameraPosition = new CameraPosition.Builder().target(sydney).zoom(12).build();
+        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
     }
 
     @Override

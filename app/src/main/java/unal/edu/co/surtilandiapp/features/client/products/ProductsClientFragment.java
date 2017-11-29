@@ -1,4 +1,4 @@
-package unal.edu.co.surtilandiapp.features.shopkeeper.navigationdrawer;
+package unal.edu.co.surtilandiapp.features.client.products;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,17 +21,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import unal.edu.co.surtilandiapp.R;
 import unal.edu.co.surtilandiapp.core.data.business.ProductBussines;
-import unal.edu.co.surtilandiapp.core.data.entities.ProductStore;
-import unal.edu.co.surtilandiapp.core.util.MyModulePreference;
+import unal.edu.co.surtilandiapp.core.data.entities.Category;
+import unal.edu.co.surtilandiapp.core.data.entities.Product;
+import unal.edu.co.surtilandiapp.features.client.products.adapter.ProductsClientRVAdapter;
 import unal.edu.co.surtilandiapp.features.shopkeeper.add.AddProductActivity;
-import unal.edu.co.surtilandiapp.features.shopkeeper.products.CategoryProduct;
-import unal.edu.co.surtilandiapp.features.shopkeeper.products.ProductsRVAdapter;
 
 import static android.content.ContentValues.TAG;
 
@@ -39,20 +39,20 @@ import static android.content.ContentValues.TAG;
  * Created by f on 8/10/2017.
  */
 
-public class ProductsFragment extends Fragment {
+public class ProductsClientFragment extends Fragment {
 
     @BindView(R.id.vertical_courses_list)
     RecyclerView coursesRecyclerView;
     @BindView(R.id.fab)
     FloatingActionButton fab;
 
-    private String mStore;
-    private List<ProductStore> mProductStoreList;
-    private ProductsRVAdapter adapter;
+    private List<Product> mProductStoreList;
+    private ProductsClientRVAdapter mAdapter;
+    private List<Category> mCategories;
     private ValueEventListener mValueEventListener;
 
 
-    public ProductsFragment() {
+    public ProductsClientFragment() {
     }
 
     @Override
@@ -60,29 +60,23 @@ public class ProductsFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_products, container, false);
         ButterKnife.bind(this, rootView);
-        traerExtra();
-        consultarProductos();
+        fab.setVisibility(View.GONE);
+        loadCategories();
 
         return rootView;
     }
 
-    private void traerExtra() {
-        final MyModulePreference myModulePreference = new MyModulePreference(getActivity());
-        mStore = myModulePreference.getString(MyModulePreference.STORE, null);
-    }
-
-    private void consultarProductos() {
-        mProductStoreList = new ArrayList<>();
-        DatabaseReference userQuery = FirebaseDatabase.getInstance().getReference(ProductBussines.PRODUCTS_STORE_REFERENCE);
+    public void loadCategories() {
+        mCategories = new ArrayList<>();
+        DatabaseReference categoriesQuery = FirebaseDatabase.getInstance().getReference(ProductBussines.CATEGORIES_REFERENCE);
         mValueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    mProductStoreList.add(postSnapshot.getValue(ProductStore.class));
-
+                    Category category = postSnapshot.getValue(Category.class);
+                    mCategories.add(category);
                 }
                 procesar();
-
             }
 
             @Override
@@ -92,44 +86,37 @@ public class ProductsFragment extends Fragment {
                 // ...
             }
         };
-        userQuery.child(mStore).addValueEventListener(mValueEventListener);
+
+        categoriesQuery.addValueEventListener(mValueEventListener);
+
     }
 
     private void procesar() {
-        HashMap<String, List<ProductStore>> hashMap = new HashMap<>();
-        for (ProductStore productStore : mProductStoreList) {
-            String categoria = productStore.getCategoria();
-            if (hashMap.containsKey(categoria)) {
-                List<ProductStore> list = hashMap.get(categoria);
-                list.add(productStore);
-
-            } else {
-                List<ProductStore> list = new ArrayList<ProductStore>();
-                list.add(productStore);
-                hashMap.put(categoria, list);
-            }
+        HashMap<String, List<String>> hashMap = new HashMap<>();
+        for (Category category : mCategories)
+        {
+            Set<String> products = category.getProducts().keySet();
+            hashMap.put(category.getName(), new ArrayList<String>(products));
         }
         mostrarLista(hashMap);
-
-
     }
 
 
-    private void mostrarLista(HashMap<String, List<ProductStore>> listHashMap) {
-        List<CategoryProduct> nuggetsList = new ArrayList<>();
-        for (Map.Entry<String, List<ProductStore>> entry : listHashMap.entrySet()) {
-            CategoryProduct categoryProduct = new CategoryProduct();
+    private void mostrarLista(HashMap<String, List<String>> listHashMap) {
+        List<CategoryProductClient> nuggetsList = new ArrayList<>();
+        for (Map.Entry<String, List<String>> entry : listHashMap.entrySet()) {
+            CategoryProductClient categoryProduct = new CategoryProductClient();
             categoryProduct.setTitle(entry.getKey());
             categoryProduct.setTags(entry.getValue());
             nuggetsList.add(categoryProduct);
         }
-        // Setting RecyclerView
+       // Setting RecyclerView
         coursesRecyclerView.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         coursesRecyclerView.setLayoutManager(llm);
-        // nuggetsList is an ArrayList of Custom Objects, in this case  CategoryProduct.class
-        adapter = new ProductsRVAdapter(getActivity(), nuggetsList);
-        coursesRecyclerView.setAdapter(adapter);
+        // nuggetsList is an ArrayList of Custom Objects, in this case  CategoryProductClient.class
+        mAdapter = new ProductsClientRVAdapter(getActivity(), nuggetsList);
+        coursesRecyclerView.setAdapter(mAdapter);
     }
 
     @OnClick(R.id.fab)
@@ -138,10 +125,4 @@ public class ProductsFragment extends Fragment {
         startActivity(intent);
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        DatabaseReference userQuery = FirebaseDatabase.getInstance().getReference(ProductBussines.PRODUCTS_STORE_REFERENCE);
-        userQuery.child(mStore).removeEventListener(mValueEventListener);
-    }
 }

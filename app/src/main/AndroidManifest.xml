@@ -61,7 +61,13 @@
         <activity
             android:name=".features.shopkeeper.add.AddProductActivity"
             android:label="@string/title_activity_add_product"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".features.shopkeeper.navigationdrawer.MenuShopKeeperActivity" />
+
+        </activity>
         <activity
             android:name=".features.store.MenuStoreActivity"
             android:label="@string/tienda" />

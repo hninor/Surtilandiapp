@@ -3,6 +3,7 @@ package unal.edu.co.surtilandiapp.features.shopkeeper.add;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -30,6 +31,7 @@ import unal.edu.co.surtilandiapp.R;
 import unal.edu.co.surtilandiapp.core.data.business.ProductBussines;
 import unal.edu.co.surtilandiapp.core.data.entities.Category;
 import unal.edu.co.surtilandiapp.core.data.entities.ProductStore;
+import unal.edu.co.surtilandiapp.core.util.MyModulePreference;
 
 public class AddProductActivity extends AppCompatActivity {
 
@@ -56,7 +58,13 @@ public class AddProductActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        mStore = "one";
+        // Get a support ActionBar corresponding to this toolbar
+        ActionBar ab = getSupportActionBar();
+
+        // Enable the Up button
+        ab.setDisplayHomeAsUpEnabled(true);
+
+        traerExtra();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,15 +75,20 @@ public class AddProductActivity extends AppCompatActivity {
                 String descripcionProducto = etDescripcionProducto.getText().toString().trim();
                 boolean disponible = switchDisponible.isChecked();
 
-                ProductStore productStore = new ProductStore(disponible, precio, new Date().getTime());
+                ProductStore productStore = new ProductStore(disponible, precio, producto, categoria, new Date().getTime());
                 DatabaseReference productsStoreQuery = FirebaseDatabase.getInstance().getReference(ProductBussines.PRODUCTS_STORE_REFERENCE);
-                productsStoreQuery.child("one").child(producto).setValue(productStore);
+                productsStoreQuery.child(mStore).child(producto).setValue(productStore);
                 Snackbar.make(view, "Product saved", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
         loadCategories();
 
+    }
+
+    private void traerExtra() {
+        final MyModulePreference myModulePreference = new MyModulePreference(getApplicationContext());
+        mStore = myModulePreference.getString(MyModulePreference.STORE, null);
     }
 
     private void loadSpinner() {

@@ -1,21 +1,29 @@
 package unal.edu.co.surtilandiapp.features.shopkeeper.navigationdrawer;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
-
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 import unal.edu.co.surtilandiapp.R;
+import unal.edu.co.surtilandiapp.core.util.MyModulePreference;
 import unal.edu.co.surtilandiapp.features.store.CreateStoreFragment;
 
 public class MenuShopKeeperActivity extends AppCompatActivity {
@@ -29,6 +37,9 @@ public class MenuShopKeeperActivity extends AppCompatActivity {
     private CharSequence mTitle;
     android.support.v7.app.ActionBarDrawerToggle mDrawerToggle;
     SupportMapFragment sMapFragment;
+    private String mStore;
+    private FusedLocationProviderClient mFusedLocationClient;
+    private Location mLastLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +47,30 @@ public class MenuShopKeeperActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        traerExtra();
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        mFusedLocationClient.getLastLocation()
+                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        // Got last known location. In some rare situations this can be null.
+                        if (location != null) {
+                            // Logic to handle location object
+                            mLastLocation = location;
+
+                        }
+                    }
+                });
         mTitle = mDrawerTitle = getTitle();
         mNavigationDrawerItemTitles= getResources().getStringArray(R.array.navigation_drawer_items_array);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -65,6 +100,11 @@ public class MenuShopKeeperActivity extends AppCompatActivity {
 //        sMapFragment.getMapAsync(this);
     }
 
+    private void traerExtra() {
+        final MyModulePreference myModulePreference = new MyModulePreference(getApplicationContext());
+        mStore = myModulePreference.getString(MyModulePreference.STORE, null);
+    }
+
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
 
         @Override
@@ -88,7 +128,12 @@ public class MenuShopKeeperActivity extends AppCompatActivity {
                 fragment = new CreateStoreFragment();
                 break;
             case 1:
-                fragment = new ProductsFragment();
+                if (mStore == null) {
+                    Toast.makeText(this, getString(R.string.tienda_requerida), Toast.LENGTH_SHORT).show();
+                } else {
+                    fragment = new ProductsFragment();
+                }
+
                 break;
             case 2:
                 fragment = new CompetitorFragment();
@@ -151,4 +196,7 @@ public class MenuShopKeeperActivity extends AppCompatActivity {
         mDrawerToggle.syncState();
     }
 
+    public Location getmLastLocation() {
+        return mLastLocation;
+    }
 }

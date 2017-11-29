@@ -47,7 +47,7 @@
                     android:drawableTint="@color/colorPlaceholder"
                     android:hint="@string/correo_electronico"
                     android:inputType="textEmailAddress"
-                    android:text="pbinor@gmail.com"
+                    android:text="hninor@gmail.com"
                     android:maxLines="1" />
             </android.support.design.widget.TextInputLayout>
 

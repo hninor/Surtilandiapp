@@ -4,13 +4,13 @@ package unal.edu.co.surtilandiapp.core.data.entities;
  * Created by hnino on 25/11/2017.
  */
 
-public class Location {
+public class LocationStore {
 
     private double lat;
     private double lng;
 
 
-    public Location() {
+    public LocationStore() {
     }
 
     public double getLat() {

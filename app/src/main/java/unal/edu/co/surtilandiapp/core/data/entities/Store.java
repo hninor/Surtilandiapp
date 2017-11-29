@@ -12,11 +12,11 @@ public class Store {
     private String close;
     private String phone;
     private String email;
-    private Location location;;
+    private LocationStore location;;
     public Store() {
     }
 
-    public Store(String name, String description, String open, String close, String phone, String email, Location location) {
+    public Store(String name, String description, String open, String close, String phone, String email, LocationStore location) {
         this.name = name;
         this.description = description;
         this.open = open;
@@ -74,11 +74,11 @@ public class Store {
         this.email = email;
     }
 
-    public Location getLocation() {
+    public LocationStore getLocation() {
         return location;
     }
 
-    public void setLocation(Location location) {
+    public void setLocation(LocationStore location) {
         this.location = location;
     }
 }

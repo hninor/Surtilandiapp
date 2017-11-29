@@ -1,6 +1,7 @@
 package unal.edu.co.surtilandiapp.features.store;
 
 import android.app.TimePickerDialog;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.google.firebase.database.DatabaseReference;
@@ -20,8 +22,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import unal.edu.co.surtilandiapp.R;
 import unal.edu.co.surtilandiapp.core.data.business.ProductBussines;
-import unal.edu.co.surtilandiapp.core.data.entities.Location;
+import unal.edu.co.surtilandiapp.core.data.entities.LocationStore;
 import unal.edu.co.surtilandiapp.core.data.entities.Store;
+import unal.edu.co.surtilandiapp.core.util.MyModulePreference;
+import unal.edu.co.surtilandiapp.features.shopkeeper.navigationdrawer.MenuShopKeeperActivity;
 
 
 public class CreateStoreFragment extends Fragment {
@@ -48,6 +52,17 @@ public class CreateStoreFragment extends Fragment {
     EditText etEmail;
     @BindView(R.id.fab)
     FloatingActionButton fab;
+    @BindView(R.id.tvLatLog)
+    TextView tvLatLog;
+    @BindView(R.id.etDireccion)
+    EditText etDireccion;
+
+    private MenuShopKeeperActivity menuShopKeeperActivity;
+    private Location mLocation;
+    private String mStore;
+    private String mUser;
+
+
 
     public CreateStoreFragment() {
         // Required empty public constructor
@@ -86,6 +101,14 @@ public class CreateStoreFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_create_store, container, false);
         ButterKnife.bind(this, view);
+        traerExtra();
+        if (mStore != null) {
+            etNombre.setText(mStore);
+            etNombre.setEnabled(false);
+        }
+        menuShopKeeperActivity = (MenuShopKeeperActivity) getActivity();
+        mLocation = menuShopKeeperActivity.getmLastLocation();
+        tvLatLog.setText("Longitud: " + mLocation.getLongitude() + ", Latitud: " + mLocation.getLatitude() );
         etHorarioApertura.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -98,7 +121,7 @@ public class CreateStoreFragment extends Fragment {
                 mTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        etHorarioApertura.setText( selectedHour + ":" + selectedMinute);
+                        etHorarioApertura.setText(selectedHour + ":" + selectedMinute);
                     }
                 }, hour, minute, true);//Yes 24 hour time
                 mTimePicker.setTitle("Select Time");
@@ -119,7 +142,7 @@ public class CreateStoreFragment extends Fragment {
                 mTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        etHorarioCierre.setText( selectedHour + ":" + selectedMinute);
+                        etHorarioCierre.setText(selectedHour + ":" + selectedMinute);
                     }
                 }, hour, minute, true);//Yes 24 hour time
                 mTimePicker.setTitle("Select Time");
@@ -138,29 +161,50 @@ public class CreateStoreFragment extends Fragment {
                 String close = etHorarioCierre.getText().toString().trim();
                 String phone = etTelefono.getText().toString().trim();
                 String email = etEmail.getText().toString().trim();
-                Location location = new Location();
-                location.setLat(3.434);
-                location.setLng(45.434);
+                String direccion = etDireccion.getText().toString().trim();
+
+                LocationStore location = new LocationStore();
+                location.setLat(mLocation.getLatitude());
+                location.setLng(mLocation.getLongitude());
                 if (name.isEmpty()) {
                     etNombre.requestFocus();
                     mostrarMensaje(getString(R.string.nombre_requerido));
+                } else if (direccion.isEmpty()){
+                    etDireccion.requestFocus();
+                    mostrarMensaje(getString(R.string.direccion_requerido));
                 } else {
                     Store store = new Store(name, description, open, close, phone, email, location);
                     DatabaseReference storeQuery = FirebaseDatabase.getInstance().getReference(ProductBussines.STORES_REFERENCE);
                     storeQuery.child(name).setValue(store);
+                    if (mStore == null) {
+                        DatabaseReference userQuery = FirebaseDatabase.getInstance().getReference(ProductBussines.USERS_REFERENCE);
+                        userQuery.child(mUser).child("tienda").setValue(name);
+                    }
+
+
                     mostrarMensaje(getString(R.string.tienda_guardada));
 
                 }
 
             }
         });
+
+
         return view;
+    }
+
+    private void traerExtra() {
+        final MyModulePreference myModulePreference = new MyModulePreference(getActivity());
+        mStore = myModulePreference.getString(MyModulePreference.STORE, null);
+        mUser = myModulePreference.getString(MyModulePreference.USER, null);
     }
 
     public void mostrarMensaje(String mensaje) {
         Snackbar.make(etDescripcion, mensaje, Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
     }
+
+
 
 
 }

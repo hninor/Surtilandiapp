@@ -14,6 +14,13 @@
         <item>Perfil</item>
         <item>Ayuda</item>
     </string-array>
+
+    <string-array name="navigation_drawer_client_items_array">
+        <item>Tiendas</item>
+        <item>Productos</item>
+        <item>Perfil</item>
+        <item>Ayuda</item>
+    </string-array>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="action_websearch">Web search</string>
@@ -54,5 +61,7 @@
     <string name="imagen">Imagen</string>
     <string name="tienda">Tienda</string>
     <string name="title_activity_compare_price">Compare Precios</string>
-    <string name="tarjeta_2">Tarjeta 2</string>>
+    <string name="tarjeta_2">Tarjeta 2</string>
+    <string name="tienda_requerida">Primero debe crear una tienda</string>
+    <string name="direccion_requerido">Dirección requerida</string>>
 </resources>

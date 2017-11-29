@@ -1,4 +1,4 @@
-package unal.edu.co.surtilandiapp.features.shopkeeper.products;
+package unal.edu.co.surtilandiapp.features.client.products.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -10,21 +10,20 @@ import android.widget.TextView;
 import java.util.List;
 
 import unal.edu.co.surtilandiapp.R;
-import unal.edu.co.surtilandiapp.core.data.entities.ProductStore;
 
 /**
  * Created by USER on 16/10/2017.
  */
 
-public class HorizontalRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class HorizontalRVClientAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<ProductStore> mDataList;
+    private List<String> mDataList;
     private int mRowIndex = -1;
 
-    public HorizontalRVAdapter() {
+    public HorizontalRVClientAdapter() {
     }
 
-    public void setData(List<ProductStore> data) {
+    public void setData(List<String> data) {
         if (mDataList != data) {
             mDataList = data;
             notifyDataSetChanged();
@@ -56,7 +55,7 @@ public class HorizontalRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder rawHolder, int position) {
         ItemViewHolder holder = (ItemViewHolder) rawHolder;
-        holder.text.setText(mDataList.get(position).getNombre());
+        holder.text.setText(mDataList.get(position));
         holder.itemView.setTag(position);
     }
 

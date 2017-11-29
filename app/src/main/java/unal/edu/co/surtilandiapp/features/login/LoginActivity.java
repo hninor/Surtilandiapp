@@ -26,6 +26,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import unal.edu.co.surtilandiapp.R;
 import unal.edu.co.surtilandiapp.core.data.business.ProductBussines;
+import unal.edu.co.surtilandiapp.core.data.entities.User;
+import unal.edu.co.surtilandiapp.core.util.MyModulePreference;
 import unal.edu.co.surtilandiapp.features.client.mainmenu.MenuClientActivity;
 import unal.edu.co.surtilandiapp.features.register.ForgetActivity;
 import unal.edu.co.surtilandiapp.features.register.RegisterActivity;
@@ -147,13 +149,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void updateUI(FirebaseUser user) {
-        String email = user.getEmail().split("@")[0];
+        final String email = user.getEmail().split("@")[0];
         DatabaseReference userQuery = FirebaseDatabase.getInstance().getReference(ProductBussines.USERS_REFERENCE);
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String rol = dataSnapshot.getValue(String.class);
-                redirectMain(rol);
+                User user = dataSnapshot.getValue(User.class);
+                String store = user.getTienda();
+                // accessing the preferences for my own module
+                final MyModulePreference myModulePreference = new MyModulePreference(getApplicationContext());
+                myModulePreference.put(MyModulePreference.USER, email);
+                if (store != null) {
+                    myModulePreference.put(MyModulePreference.STORE, store);
+                }
+                redirectMain(user.getRol());
             }
 
             @Override
@@ -163,7 +172,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 // ...
             }
         };
-        userQuery.child(email).child("rol").addListenerForSingleValueEvent(postListener);
+        userQuery.child(email).addListenerForSingleValueEvent(postListener);
 
     }
 

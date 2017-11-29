@@ -15,12 +15,12 @@ import android.widget.ListView;
 import com.google.android.gms.maps.SupportMapFragment;
 
 import unal.edu.co.surtilandiapp.R;
+import unal.edu.co.surtilandiapp.features.client.products.ProductsClientFragment;
+import unal.edu.co.surtilandiapp.features.client.search.SearchStoreFragment;
 import unal.edu.co.surtilandiapp.features.shopkeeper.navigationdrawer.CompetitorFragment;
 import unal.edu.co.surtilandiapp.features.shopkeeper.navigationdrawer.DataModel;
 import unal.edu.co.surtilandiapp.features.shopkeeper.navigationdrawer.DrawerItemCustomAdapter;
-import unal.edu.co.surtilandiapp.features.shopkeeper.navigationdrawer.ProductsFragment;
 import unal.edu.co.surtilandiapp.features.shopkeeper.navigationdrawer.ProfileFragment;
-import unal.edu.co.surtilandiapp.features.client.search.SearchStoreFragment;
 
 public class MenuClientActivity extends AppCompatActivity {
 
@@ -41,7 +41,7 @@ public class MenuClientActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mTitle = mDrawerTitle = getTitle();
-        mNavigationDrawerItemTitles= getResources().getStringArray(R.array.navigation_drawer_items_array);
+        mNavigationDrawerItemTitles= getResources().getStringArray(R.array.navigation_drawer_client_items_array);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
@@ -91,7 +91,7 @@ public class MenuClientActivity extends AppCompatActivity {
                 fragment = new SearchStoreFragment();
                 break;
             case 1:
-                fragment = new ProductsFragment();
+                fragment = new ProductsClientFragment();
                 break;
             case 2:
                 fragment = new CompetitorFragment();
