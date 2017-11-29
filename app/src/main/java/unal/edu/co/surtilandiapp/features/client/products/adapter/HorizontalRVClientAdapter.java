@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import unal.edu.co.surtilandiapp.R;
+import unal.edu.co.surtilandiapp.features.client.products.ProductsClientFragment;
 
 /**
  * Created by USER on 16/10/2017.
@@ -19,9 +20,12 @@ public class HorizontalRVClientAdapter extends RecyclerView.Adapter<RecyclerView
 
     private List<String> mDataList;
     private int mRowIndex = -1;
+    private ProductsClientFragment mFragment;
 
-    public HorizontalRVClientAdapter() {
+    public HorizontalRVClientAdapter(ProductsClientFragment productsClientFragment) {
+        mFragment = productsClientFragment;
     }
+
 
     public void setData(List<String> data) {
         if (mDataList != data) {
@@ -48,7 +52,15 @@ public class HorizontalRVClientAdapter extends RecyclerView.Adapter<RecyclerView
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         View itemView = LayoutInflater.from(context).inflate(R.layout.products_horizontal_item, parent, false);
-        ItemViewHolder holder = new ItemViewHolder(itemView);
+        final ItemViewHolder holder = new ItemViewHolder(itemView);
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position = holder.getAdapterPosition();
+                String producto = mDataList.get(position);
+                mFragment.compararPrecios(producto);
+            }
+        });
         return holder;
     }
 

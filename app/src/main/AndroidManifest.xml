@@ -70,11 +70,20 @@
         </activity>
         <activity
             android:name=".features.store.MenuStoreActivity"
-            android:label="@string/tienda" />
+            android:label="@string/tienda">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".features.client.mainmenu.MenuClientActivity" />
+        </activity>
         <activity
             android:name=".features.client.products.ComparePriceActivity"
             android:label="@string/title_activity_compare_price"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".features.client.mainmenu.MenuClientActivity" />
+        </activity>
     </application>
 
 </manifest>

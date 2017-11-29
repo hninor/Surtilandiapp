@@ -41,6 +41,7 @@ import static android.content.ContentValues.TAG;
 
 public class ProductsClientFragment extends Fragment {
 
+    public static final String PRODUCTO = "PRODUCTO";
     @BindView(R.id.vertical_courses_list)
     RecyclerView coursesRecyclerView;
     @BindView(R.id.fab)
@@ -115,7 +116,7 @@ public class ProductsClientFragment extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         coursesRecyclerView.setLayoutManager(llm);
         // nuggetsList is an ArrayList of Custom Objects, in this case  CategoryProductClient.class
-        mAdapter = new ProductsClientRVAdapter(getActivity(), nuggetsList);
+        mAdapter = new ProductsClientRVAdapter(getActivity(), nuggetsList, this);
         coursesRecyclerView.setAdapter(mAdapter);
     }
 
@@ -125,4 +126,9 @@ public class ProductsClientFragment extends Fragment {
         startActivity(intent);
     }
 
+    public void compararPrecios(String producto) {
+        Intent intent = new Intent(getActivity(), ComparePriceActivity.class);
+        intent.putExtra(PRODUCTO, producto);
+        startActivity(intent);
+    }
 }

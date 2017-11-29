@@ -8,20 +8,22 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import unal.edu.co.surtilandiapp.R;
-import unal.edu.co.surtilandiapp.core.data.entities.ProductStore;
 
 
 public class ComaparePriceRecyclerViewAdapter extends RecyclerView.Adapter<ComaparePriceRecyclerViewAdapter.ViewHolder> {
-    private final List<ProductStore> mValues;
+    private final List<ProductStorePrice> mValues;
 
     public class ViewHolder extends android.support.v7.widget.RecyclerView.ViewHolder {
-       // @BindView(R.id.tvDepartamento)
-        public TextView tvDepartamento;
+        @BindView(R.id.tvTienda)
+        TextView tvTienda;
+        @BindView(R.id.tvPrecio)
+        TextView tvPrecio;
 
 
-        public ProductStore mItem;
+        public ProductStorePrice mItem;
         public View mView;
 
         public ViewHolder(View view) {
@@ -32,7 +34,7 @@ public class ComaparePriceRecyclerViewAdapter extends RecyclerView.Adapter<Comap
 
     }
 
-    public ComaparePriceRecyclerViewAdapter(List<ProductStore> items) {
+    public ComaparePriceRecyclerViewAdapter(List<ProductStorePrice> items) {
         this.mValues = items;
     }
 
@@ -42,7 +44,8 @@ public class ComaparePriceRecyclerViewAdapter extends RecyclerView.Adapter<Comap
 
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.mItem = this.mValues.get(position);
-        //holder.tvDepartamento.setText((this.mValues.get(position)).getDepartamento());
+        holder.tvTienda.setText("Tienda: " + this.mValues.get(position).getTienda());
+        holder.tvPrecio.setText("Precio: " + this.mValues.get(position).getPrecio());
 
     }
 

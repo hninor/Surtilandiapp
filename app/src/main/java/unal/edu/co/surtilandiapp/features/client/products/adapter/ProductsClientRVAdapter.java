@@ -13,7 +13,7 @@ import java.util.List;
 
 import unal.edu.co.surtilandiapp.R;
 import unal.edu.co.surtilandiapp.features.client.products.CategoryProductClient;
-import unal.edu.co.surtilandiapp.features.shopkeeper.products.HorizontalRVAdapter;
+import unal.edu.co.surtilandiapp.features.client.products.ProductsClientFragment;
 
 /**
  * Created by USER on 16/10/2017.
@@ -24,6 +24,7 @@ public class ProductsClientRVAdapter extends RecyclerView.Adapter<ProductsClient
     private final Context mContext;
     private static List<CategoryProductClient> mData;
     private static RecyclerView horizontalList;
+    private static ProductsClientFragment mProductsClientFragment;
 
     public static class SimpleViewHolder extends RecyclerView.ViewHolder {
         public final TextView title;
@@ -35,13 +36,14 @@ public class ProductsClientRVAdapter extends RecyclerView.Adapter<ProductsClient
             title = (TextView) view.findViewById(R.id.course_item_name_tv);
             horizontalList = (RecyclerView) itemView.findViewById(R.id.horizontal_list);
             horizontalList.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-            horizontalAdapter = new HorizontalRVClientAdapter();
+            horizontalAdapter = new HorizontalRVClientAdapter(mProductsClientFragment);
             horizontalList.setAdapter(horizontalAdapter);
         }
     }
 
-    public ProductsClientRVAdapter(Context context, List<CategoryProductClient> data) {
+    public ProductsClientRVAdapter(Context context, List<CategoryProductClient> data, ProductsClientFragment productsClientFragment) {
         mContext = context;
+        mProductsClientFragment = productsClientFragment;
         if (data != null)
             mData = new ArrayList<>(data);
         else mData = new ArrayList<>();
